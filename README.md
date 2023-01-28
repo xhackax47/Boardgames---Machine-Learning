@@ -22,3 +22,8 @@ Pour être gentil avec le site, une requête est faite pour 30 jeux à la fois e
 une fois toutes les 2 secondes.
 Dans les forums, l'opérateur mentionne que 2 demandes par seconde sont acceptables, mais par sécurité
 je n'en fais qu'une toutes les 2 secondes.
+
+Ne pas oublier d'installer les dépendances via "pip install" : 
+- Scipy
+- Pyplot
+- Sklearn
