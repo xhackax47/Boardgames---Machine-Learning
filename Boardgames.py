@@ -1,14 +1,15 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import time
-#from sklearn.cluster import KMeans
+from sklearn.cluster import KMeans
+from sklearn.decomposition import PCA
 
 
 # -*- coding: utf-8 -*-
 """
 Created on Sat Jan 28 12:13:23 2023
 
-@author: samy_
+@author: xhackax47
 """
 
 # Variables
@@ -50,16 +51,22 @@ print("Dataset filtré")
 msgStartGraph()
 graphParColonne(arating)
 
-"""
 # Initialiser le modèle avec 2 paramètres -- nombre de clusters et random state.
-kmeans_model = KMeans(n_clusters=5, random_state=1)
+kmeans_model = KMeans(n_clusters=5, random_state=1, n_init="auto")
 # Seulement les colonnes numériques de games.
 good_columns = games._get_numeric_data()
 # Adapter le modèle en utilisant les bonnes colonnes.
 kmeans_model.fit(good_columns)
 # Obtenir les labels des clusters.
 labels = kmeans_model.labels_
-"""
+# Créer un modèle PCA.
+pca_2 = PCA(2)
+# adapter le modèle PCA aux colonnes numériques précédentes.
+plot_columns = pca_2.fit_transform(good_columns)
+# Faire un graphique à nuage de points pour chaque type de jeux de société, à partir des clusters.
+plt.scatter(x=plot_columns[:,0], y=plot_columns[:,1], c=labels)
+# Afficher le graphique.
+plt.show()
 
 # Afficher les noms de colonnes du DataFrame games.
 #print("Colonne : " + games.columns)
