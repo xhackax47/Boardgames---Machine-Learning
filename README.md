@@ -15,18 +15,14 @@ une fois toutes les 2 secondes.
 Dans les forums, l'opérateur mentionne que 2 demandes par seconde sont acceptables, mais par sécurité
 je n'en fais qu'une toutes les 2 secondes.
 
-Ne pas oublier d'installer les dépendances via "pip install" : 
-- Scipy
-- Pyplot
-- Sklearn
-
-Pour être le plus propre possible, il vaut mieux utiliser Anaconda pour créer un environnement virtuel : 
+Afin d'installer les dépendances nécessaires, il vaut mieux utiliser Anaconda pour créer un environnement virtuel : 
 
 Vous devez créer un nouvel environnement Conda avec les modules que vous voulez utiliser avec Spyder et y inclure spyder-kernels. Par exemple, si vous souhaitez utiliser scikit-learn, ouvrez votre terminal ou l'invite Anaconda sous Windows et exécutez les commandes suivantes :
 ```
 conda create -n spyder-env -y
 conda activate spyder-env
 conda install spyder-kernels scikit-learn -y
+conda install nomdumoduleainstaller
 ```
 Enfin, vous devez connecter Spyder à cet environnement en modifiant l'interpréteur Python par défaut de Spyder. Pour ce faire, cliquez sur le nom de l'environnement actuel dans la barre d'état, puis cliquez sur Changer l'environnement par défaut dans les Préférences.
 
