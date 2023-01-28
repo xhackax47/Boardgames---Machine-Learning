@@ -4,7 +4,7 @@ Ce projet me sert à expérimenter le machine learning à travers du Dataset de 
 
 Afin d'installer les dépendances nécessaires, il vaut mieux utiliser Anaconda pour créer un environnement virtuel : 
 
-Vous devez créer un nouvel environnement Conda avec les modules que vous voulez utiliser avec Spyder et y inclure spyder-kernels. Par exemple, si vous souhaitez utiliser scikit-learn, ouvrez votre terminal ou l'invite Anaconda sous Windows et exécutez les commandes suivantes :
+Vous devez créer un nouvel environnement Conda avec les modules que vous voulez utiliser avec Spyder et y inclure spyder-kernels. Par exemple, si vous souhaitez utiliser scikit-learn, ouvrez votre terminal ou l'invite Anaconda sous Windows et exécutez les commandes suivantes pour créer l'environnement, l'activer et installer les modules/dépendances nécessaires:
 ```
 conda create -n spyder-env -y
 conda activate spyder-env
