@@ -1,14 +1,6 @@
-# Board Game Geek
+# Boardgames - Machine Learning
 
-Voici des scrappers pour le site [Board Game Geek] (http://www.boardgamegeek.com).
-Chacun d'entre eux sert un objectif distinct dans la collecte de données.
-
-Comme l'attribution des ID n'est pas intuitive (du moins pour moi) pour les jeux, pour obtenir des détails sur le jeu, il faut connaître l'ID à l'avance.
-pour obtenir des détails sur le jeu, il faut connaître l'ID au préalable.
-En exploitant intelligemment la section des jeux de société de BGG, vous pouvez obtenir les identifiants de tous les jeux de société présents sur le site, ainsi que des informations de base sur ces jeux.
-jeux de société du site, ainsi que des informations de base sur leur classement.
-Si vous le souhaitez, vous pouvez utiliser les identifiants extraits pour obtenir des informations sur tous les jeux du site.
-les différents jeux du site.
+Ce projet me sert à expérimenter le machine learning à travers du Dataset de boardgamegeek.com.
 
 Utilisez `scrapy` pour exécuter d'abord `spider.py` avec `scrapy runspider spider.py -o items.csv`.
 Ce CSV contiendra les noms des jeux, leurs identifiants et leurs évaluations.
