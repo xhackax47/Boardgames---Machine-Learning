@@ -1,24 +1,24 @@
 # Board Game Geek
 
-These are scrapers for the site [Board Game Geek](http://www.boardgamegeek.com).
-Each serves a distinct purpose in data collection.
+Voici des scrappers pour le site [Board Game Geek] (http://www.boardgamegeek.com).
+Chacun d'entre eux sert un objectif distinct dans la collecte de données.
 
-Because ID assignments are not intuitive (at least to me) for games, in order
-to get game details you have to know the ID beforehand.
-With clever scraping of BGG's board game section, you can get game IDs for all
-board games on the site along with basic rating information.
-If you so desire, you can then use the extracted IDs to get information on all
-of the different games on the site.
+Comme l'attribution des ID n'est pas intuitive (du moins pour moi) pour les jeux, pour obtenir des détails sur le jeu, il faut connaître l'ID à l'avance.
+pour obtenir des détails sur le jeu, il faut connaître l'ID au préalable.
+En exploitant intelligemment la section des jeux de société de BGG, vous pouvez obtenir les identifiants de tous les jeux de société présents sur le site, ainsi que des informations de base sur ces jeux.
+jeux de société du site, ainsi que des informations de base sur leur classement.
+Si vous le souhaitez, vous pouvez utiliser les identifiants extraits pour obtenir des informations sur tous les jeux du site.
+les différents jeux du site.
 
-Use `scrapy` to first run `spider.py` with `scrapy runspider spider.py -o items.csv`.
-This CSV will contain game names, IDs, and ratings.
-Next, run `python extract_ids.py` to put all of the IDs into a file called `ids.txt`.
-This file is then used by the last script.
-Run `python get_game_info.py` to retrieve all games whose IDs are in `ids.txt`.
-This data will be written to a CSV called `games.csv` and is much more detailed
-than the information contained in `items.csv`.
-Note that there are 80000+ games, so each of these steps will take some time.
-To be nice to the site, a request is made for 30 games at a time and is only made
-once every 2 seconds.
-In the forums the operator mentions 2 requests per second is fine, but just to be safe
-I only do 1 every 2 seconds.
+Utilisez `scrapy` pour exécuter d'abord `spider.py` avec `scrapy runspider spider.py -o items.csv`.
+Ce CSV contiendra les noms des jeux, leurs identifiants et leurs évaluations.
+Ensuite, exécutez `python extract_ids.py` pour mettre tous les IDs dans un fichier appelé `ids.txt`.
+Ce fichier est ensuite utilisé par le dernier script.
+Lancez `python get_game_info.py` pour récupérer tous les jeux dont les IDs sont dans `ids.txt`.
+Ces données seront écrites dans un CSV appelé `games.csv` et sont beaucoup plus détaillées
+que les informations contenues dans `items.csv`.
+Notez qu'il y a plus de 80000 jeux, donc chacune de ces étapes prendra un certain temps.
+Pour être gentil avec le site, une requête est faite pour 30 jeux à la fois et est seulement faite
+une fois toutes les 2 secondes.
+Dans les forums, l'opérateur mentionne que 2 demandes par seconde sont acceptables, mais par sécurité
+je n'en fais qu'une toutes les 2 secondes.
