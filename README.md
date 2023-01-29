@@ -2,6 +2,16 @@
 
 Ce projet me sert à expérimenter le machine learning à travers du Dataset de boardgamegeek.com.
 
+# Environnement
+
+Nous aurons besoin de Python dernière version, l'IDE Spyder et Anaconda3 pour mettre tout en place.
+
+[Python](https://www.python.org/downloads/).
+[Spyder IDE](https://www.spyder-ide.org/).
+[Anaconda3](https://www.anaconda.com/).
+
+## Dépendances
+
 Afin d'installer les dépendances nécessaires, il vaut mieux utiliser Anaconda pour créer un environnement virtuel : 
 
 Vous devez créer un nouvel environnement Conda avec les modules que vous voulez utiliser avec Spyder et y inclure spyder-kernels. Par exemple, si vous souhaitez utiliser scikit-learn, ouvrez votre terminal ou l'invite Anaconda sous Windows et exécutez les commandes suivantes pour créer l'environnement, l'activer et installer les modules/dépendances nécessaires:
