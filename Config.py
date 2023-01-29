@@ -30,6 +30,14 @@ target = arating
 
 # Fonctions
 
+def boardgamesStart(dataset):
+    afficherInfosDataSet(dataset)
+    graphParColonne(dataset, arating)
+    dataset = filtreDatas(dataset)
+    graphParColonne(dataset, arating)
+    graphDataModel(dataset)
+    corrDataModel(dataset, arating)
+    entrainement(dataset)
 
 def afficherInfosDataSet(dataset):
     """Affichier infos sur le dataset"""
