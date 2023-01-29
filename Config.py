@@ -6,6 +6,7 @@ from sklearn.decomposition import PCA
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error
+from sklearn.ensemble import RandomForestRegressor
 
 # -*- coding: utf-8 -*-
 """
@@ -24,9 +25,9 @@ graphStart = "Génération du graphique en cours..."
 graph2Start = "Génération du graphique nuage en cours..."
 harating = "bayes_average_rating"
 name = "name"
+target = arating
 typec = "type"
 urated = "users_rated"
-target = arating
 
 # Fonctions
 
@@ -113,17 +114,27 @@ def entrainement(dataset):
     # Afficher les dimensions des 2 sets.
     print("Dimension DataSet d'entraînement = " + str(train.shape))
     print("Dimension DataSet de test = " + str(test.shape))
-    # Initialiser la classe du modèle.
-    model = LinearRegression()
     # Obtenir toutes les colonnes du DataFrame.
     columns = dataset.columns.tolist()
     # Filtrer les colonnes pour supprimer celles que nous ne voulons pas.
     columns = [c for c in columns if c not in [harating, arating, typec, name]]
-    # Adapter le modèle aux données d'entrainement
-    model.fit(train[columns], train[target])
-    print("Calcul du taux d'erreur des prédictions de notre modèle")
+    # Initialiser les modèles
+    rforest_model = RandomForestRegressor(n_estimators=100, min_samples_leaf=10, random_state=1)
+    linear_model = LinearRegression()
+    # Adapter les modèles aux données d'entrainement
+    linear_model.fit(train[columns], train[target])
+    rforest_model.fit(train[columns], train[target])
     # Générer des prédictions pour le set de test.
-    predictions = model.predict(test[columns])
+    linear_predictions = linear_model.predict(test[columns])
+    rforest_predictions = rforest_model.predict(test[columns])
     # Calculer l'erreur entre nos prédictions et les valeurs réelles que nous connaissons.
-    erreur = mean_squared_error(predictions, test[target])
-    print("Taux d'erreur = " + str(erreur))
+    linear_erreur = mean_squared_error(linear_predictions, test[target])
+    rforest_erreur = mean_squared_error(rforest_predictions, test[target])
+    print("Calcul Taux d'erreur Régression Linéaire = " + str(linear_erreur))
+    print("Calcul Taux d'erreur Régression par forêt aléatoire = " + str(rforest_erreur))
+    if rforest_erreur > linear_erreur:
+        print("L'algorithme de régression linéaire à un taux d'erreur plus précis pour ce Dataset.")
+    elif rforest_erreur < linear_erreur:
+        print("L'algorithme de régression par forêt aléatoire à un taux d'erreur plus précis pour ce Dataset.")
+    else:
+        print("Un autre algorithme a un meilleur taux d'erreur")
