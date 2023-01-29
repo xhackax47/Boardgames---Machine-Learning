@@ -3,32 +3,32 @@ import matplotlib.pyplot as plt
 import time
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
 
 # -*- coding: utf-8 -*-
 """
 Created on Sun Jan 29 00:02:51 2023
 
-@author: samy_
+@author: xhackax47
 """
 
 # Variables
 
-msgStart = "INITIALISATION ET DEMARRAGE DU PROGRAMME PRINCIPAL"
-msgEnd = "FIN DU PROGRAMME PRINCIPAL"
-graphStart = "Génération du graphique en cours..."
 affichageInfos = "Affichage de certaines informations concernant le DataSet utilisé : "
 arating = "average_rating"
-urated = "users_rated"
 delaiStartGraph = 2.5
-# Lire les données.
+delaiStartFiltre = 3.5
+graphStart = "Génération du graphique en cours..."
+graph2Start = "Génération du graphique nuage en cours..."
+harating = "bayes_average_rating"
+name = "name"
+typec = "type"
+urated = "users_rated"
+target = arating
 
 # Fonctions
-
-
-def msgStartGraph():
-    """Afficher le message de démarrage de génération de graphique"""
-    time.sleep(delaiStartGraph)
-    print(graphStart)
 
 
 def afficherInfosDataSet(dataset):
@@ -50,17 +50,23 @@ def filtreDatas(dataset):
     """Supprime chaque ligne sans aucun review utilisateur + les lignes contenant des valeurs manquantes."""
     dataset = dataset[dataset[urated] > 0]
     dataset = dataset.dropna(axis=0)
-    time.sleep(delaiStartGraph)
+    # Obtenir toutes les colonnes du DataFrame games.
+    columns = dataset.columns.tolist()
+    # Filtrer les colonnes pour supprimer celles que nous ne voulons pas.
+    columns = [c for c in columns if c not in [harating, arating, typec, name]]
+    time.sleep(delaiStartFiltre)
     print("Dataset filtré")
     return dataset
 
 def corrDataModel(dataset, colonne):
     """Afficher les corrélations de la colonne"""
+    print("Affichage des corrélations pour la colonne : " + colonne)
     print(dataset.corr(numeric_only=True)[colonne])
 
 def graphParColonne(dataset, colonne):
     """Génération d'un graphique à partir d'une colonne."""
-    msgStartGraph()
+    time.sleep(delaiStartGraph)
+    print(graphStart)
     # Histogramme de toutes les notes de la colonne.
     plt.hist(dataset[colonne])
     # Afficher le graphique
@@ -70,6 +76,8 @@ def graphParColonne(dataset, colonne):
 
 def graphDataModel(dataset):
     """Initialiser le modèle de données, les clusters et afficher le graphique résultant"""
+    time.sleep(delaiStartGraph)
+    print(graph2Start)
     # Initialiser le modèle avec 2 paramètres -- nombre de clusters et random state.
     kmeans_model = KMeans(n_clusters=5, random_state=1, n_init="auto")
     # Seulement les colonnes numériques de games.
@@ -86,3 +94,28 @@ def graphDataModel(dataset):
     plt.scatter(x=plot_columns[:, 0], y=plot_columns[:, 1], c=labels)
     # Afficher le graphique.
     plt.show()
+    
+def entrainement(dataset):
+    """Séparer le dataset en 2 sets et créer le modèle de régression linéaire et l'entraîner avec le datasets train"""
+    # Générer le set de training. Fixer random_state pour répliquer lé resultats ultérieurement.
+    train = dataset.sample(frac=0.8, random_state=1)
+    # Sélectionner tout ce qui n'est pas dans le set de training et le mettre dans le set de test.
+    test = dataset.loc[~dataset.index.isin(train.index)]
+    print("Dataset séparé en 2, train et test")
+    # Afficher les dimensions des 2 sets.
+    print("Dimension DataSet d'entraînement = " + str(train.shape))
+    print("Dimension DataSet de test = " + str(test.shape))
+    # Initialiser la classe du modèle.
+    model = LinearRegression()
+    # Obtenir toutes les colonnes du DataFrame.
+    columns = dataset.columns.tolist()
+    # Filtrer les colonnes pour supprimer celles que nous ne voulons pas.
+    columns = [c for c in columns if c not in [harating, arating, typec, name]]
+    # Adapter le modèle aux données d'entrainement
+    model.fit(train[columns], train[target])
+    print("Calcul du taux d'erreur des prédictions de notre modèle")
+    # Générer des prédictions pour le set de test.
+    predictions = model.predict(test[columns])
+    # Calculer l'erreur entre nos prédictions et les valeurs réelles que nous connaissons.
+    erreur = mean_squared_error(predictions, test[target])
+    print("Taux d'erreur = " + str(erreur))
