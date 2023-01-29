@@ -2,13 +2,13 @@
 
 Ce projet me sert à expérimenter le machine learning à travers du Dataset de boardgamegeek.com.
 
-# Environnement
+## Environnement
 
 Nous aurons besoin de Python dernière version, l'IDE Spyder et Anaconda3 pour mettre tout en place.
 
-[Python](https://www.python.org/downloads/).
-[Spyder IDE](https://www.spyder-ide.org/).
-[Anaconda3](https://www.anaconda.com/).
+- [Python](https://www.python.org/downloads/)
+- [Spyder IDE](https://www.spyder-ide.org/)
+- [Anaconda3](https://www.anaconda.com/)
 
 ## Dépendances
 
