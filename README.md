@@ -1,6 +1,6 @@
 # Boardgames - Machine Learning
 
-Ce projet me sert à expérimenter le machine learning à travers du Dataset de boardgamegeek.com.
+Ce projet me sert à expérimenter le machine learning avec l'algorithme de classification par régression linéaire à travers le Dataset de boardgamegeek.com.
 
  ![Example de fonctionnement de l'IA 1](https://i.ibb.co/P9PL7v0/Capture-d-cran-2023-02-04-164420.png)
  ![Example de fonctionnement de l'IA 2](https://i.ibb.co/xgbzmJc/Capture-d-cran-2023-02-04-164500.png)
