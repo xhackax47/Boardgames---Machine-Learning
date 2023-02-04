@@ -2,6 +2,10 @@
 
 Ce projet me sert à expérimenter le machine learning à travers du Dataset de boardgamegeek.com.
 
+ ![Example de fonctionnement de l'IA 1](https://i.ibb.co/P9PL7v0/Capture-d-cran-2023-02-04-164420.png)
+ ![Example de fonctionnement de l'IA 2](https://i.ibb.co/xgbzmJc/Capture-d-cran-2023-02-04-164500.png)
+
+
 ## Environnement
 
 Nous aurons besoin de Python dernière version, l'IDE Spyder et Anaconda3 pour mettre tout en place.
